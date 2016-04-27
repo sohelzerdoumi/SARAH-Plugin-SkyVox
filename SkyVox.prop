@@ -1,0 +1,8 @@
+{
+  "modules" : { 
+    "SkyVox"  : {
+      "description": "Module for The Elder Scroll V - Skyrim. This module let you send command directly into the game.",
+      "version": "0.0"
+    }
+  }
+}

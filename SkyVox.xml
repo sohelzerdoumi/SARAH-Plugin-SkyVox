@@ -1,0 +1,77 @@
+﻿<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleSkyVox" xmlns="http://www.w3.org/2001/06/grammar"
+         tag-format="semantics/1.0">
+    <rule id="ruleSkyVox" scope="public">
+        <example>Sky sort l'épée</example>
+        <example>Sky enregistre le bouclier</example>
+
+        <tag>out.action=new Object();</tag>
+        <tag>out.action._action = "";</tag>
+
+        <item>Sky</item>
+        <item><ruleref uri="#Actions" /></item>
+
+        <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/SkyVox";</tag>
+    </rule>
+
+    <rule id="Actions">
+        <one-of>
+            <item><ruleref uri="#ActionLoadSaveItem" /></item>
+        </one-of>
+    </rule>
+
+    <rule id="ActionLoadSaveItem">
+        <tag>out.action._action = "ActionLoadSaveItem";</tag>
+        <one-of>
+            <item>enregistre<tag>out.action._do = "save";</tag></item>
+            <item>sauvegarde<tag>out.action._do = "save";</tag></item>
+            <item>charge<tag>out.action._do = "load";</tag></item>
+            <item>sort<tag>out.action._do = "load";</tag></item>
+        </one-of>
+        <item repeat="0-1"><ruleref uri="#ItemType" /></item>
+        <item><ruleref uri="#Items" /></item>
+        <item repeat="0-1"><ruleref uri="#HandTarget" /></item>
+    </rule>
+
+    <rule id="Items">
+        <one-of>
+            <item>arc<tag>out.action._item = "arc 0";out.action._name = 'arc';</tag></item>
+            <item>épée anti dragon<tag>out.action._item = "epee 1";out.action._name = 'épée anti dragon';</tag></item>
+            <item>épée<tag>out.action._item = "epee 0";out.action._name = 'épée';</tag></item>
+
+            <item>bouclier<tag>out.action._item = "bouclier 0";out.action._type = 'shield';out.action._name = 'bouclier';</tag></item>
+            <item>bouclier anti magie<tag>out.action._item = "bouclier 1";out.action._type = 'shield';out.action._name = 'bouclier anti magie';</tag></item>
+
+            <item>flamme<tag>out.action._item = "spell 0";out.action._type = 'spell';out.action._name = 'flame';</tag></item>
+            <item>glace<tag>out.action._item  = "spell 1";out.action._type = 'spell';out.action._name = 'glace';</tag></item>
+            <item>éclair<tag>out.action._item = "spell 2";out.action._type = 'spell';out.action._name = 'éclair';</tag></item>
+            <item>boule de feu<tag>out.action._item = "spell 3";out.action._type = 'spell';out.action._name = 'boule de feu';</tag></item>
+            <item>lumière<tag>out.action._item = "spell 4";out.action._type = 'spell';out.action._name = 'lumière';</tag></item>
+            <item>pas léger<tag>out.action._item = "spell 5";out.action._type = 'spell';out.action._name = 'pas léger';</tag></item>
+            <item>invocation <tag>out.action._item = "spell 6";out.action._type = 'spell';out.action._name = 'invocation atronak';</tag></item>
+            <item>marche sur l'eau<tag>out.action._item = "spell 7";out.action._type = 'spell';out.action._name = 'marche sur l\'eau';</tag></item>
+            <item>soin rapide<tag>out.action._item = "spell 8";out.action._type = 'spell';out.action._name = 'soin rapide';</tag></item>
+            <item>soin majeur<tag>out.action._item = "spell 9";out.action._type = 'spell';out.action._name = 'soin majeur';</tag></item>
+            <item>régénération de mana<tag>out.action._item = "spell 10";out.action._type = 'spell';out.action._name = 'régène de mana';</tag></item>
+            <item>clairvoyance<tag>out.action._item = "spell 11";out.action._type = 'spell';out.action._name = 'clairvoyance';</tag></item>
+            <item>détection des vivants<tag>out.action._item = "spell 12";out.action._type = 'spell';out.action._name = 'détection des vivants';</tag></item>
+            <item>foli<tag>out.action._item = "spell 13";out.action._type = 'spell';out.action._name = 'foli';</tag></item>
+            <item>déplacement rapide<tag>out.action._item = "spell 14";out.action._type = 'spell';out.action._name = 'déplacement rapide';</tag></item>
+        </one-of>
+    </rule>
+
+    <rule id="ItemType">
+        <one-of>
+            <item>le sort</item>
+        </one-of>
+    </rule>
+
+    <rule id="HandTarget">
+        <one-of>
+            <item>deux fois<tag>out.action._double = true;</tag></item>
+            <item>en double<tag>out.action._double = true;</tag></item>
+            <item>main gauche<tag>out.action._gauche = true;</tag></item>
+            <item>en main gauche<tag>out.action._gauche = true;</tag></item>
+            <item>à gauche<tag>out.action._gauche = true;</tag></item>
+        </one-of>
+    </rule>
+</grammar>
